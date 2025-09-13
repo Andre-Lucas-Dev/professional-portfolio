@@ -14,8 +14,8 @@
   --body-font: "Poppins", sans-serif;
   --big-font-size: 2rem;
   --h2-font-size: 1.25rem;
-  --normal-font-size: .938rem;
-  --smaller-font-size: .75rem;
+  --normal-font-size: 0.938rem;
+  --smaller-font-size: 0.75rem;
   /*===== Margenes =====*/
   --mb-2: 1rem;
   --mb-4: 2rem;
@@ -30,12 +30,14 @@
     --big-font-size: 3.5rem;
     --h2-font-size: 2rem;
     --normal-font-size: 1rem;
-    --smaller-font-size: .875rem;
+    --smaller-font-size: 0.875rem;
   }
 }
 
 /*===== BASE =====*/
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -50,7 +52,9 @@ body {
   color: var(--second-color);
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin: 0;
 }
 
@@ -214,8 +218,7 @@ img {
   width: 260px;
 }
 .home__blob {
-
-  fill: rgb(88, 96, 104)
+  fill: rgb(88, 96, 104);
 }
 .home__blob-img {
   width: 360px;
@@ -258,6 +261,7 @@ img {
 }
 .skills__subtitle {
   margin-bottom: var(--mb-2);
+  text-align: center;
 }
 .skills__text {
   margin-bottom: var(--mb-4);
@@ -333,6 +337,16 @@ img {
   border: 1.5px solid var(--second-color);
   outline: none;
   margin-bottom: var(--mb-4);
+}
+
+.contact-titlee{
+  text-align: center;
+  margin-bottom: var(--mb-4);
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
 }
 .contact__button {
   display: block;
@@ -417,6 +431,12 @@ img {
     justify-items: center;
   }
 }
+  .skills__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 @media screen and (min-width: 768px) {
   body {
     margin: 0;
@@ -483,5 +503,198 @@ img {
   }
   .home__img {
     width: 450px;
+  }
+}
+
+
+.container_contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateX(40px) rotateY(-15deg);
+  animation: fadeInRight 0.7s ease-out forwards;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+  box-shadow: 0 20px 40px rgba(255, 193, 7, 0.1);
+}
+
+.contact-form {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.form-group:nth-child(1) {
+  animation: fadeInUp 0.5s ease-out 0.1s forwards;
+}
+
+.form-group:nth-child(2) {
+  animation: fadeInUp 0.5s ease-out 0.2s forwards;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #1a17b4, 0 0 10px rgba(26, 130, 179, 0.3);
+  transform: scale(1.02);
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+.form-textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+.submit-button {
+  width: 100%;
+  background: #1534bd;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-out 0.3s forwards;
+}
+
+.submit-button:hover {
+  background: #0428ca;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(7, 44, 255, 0.5);
+}
+
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+.button-icon {
+  transition: transform 0.6s ease;
+}
+
+.submit-button:hover .button-icon {
+  transform: rotate(360deg);
+}
+
+/* Animações */
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  body {
+    padding: 10px;
+  }
+}
+
+/* Efeitos de loading */
+.loading {
+  background: #9ca3af !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.loading .button-text {
+  opacity: 0;
+}
+
+.loading .button-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Efeitos de foco melhorados */
+.form-input:focus + .focus-ring,
+.form-textarea:focus + .focus-ring {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 10px;
+  border: 2px solid #162db4ef;
+  pointer-events: none;
+  opacity: 0;
+  animation: focusRing 0.3s ease-out forwards;
+}
+
+@keyframes focusRing {
+  to {
+    opacity: 1;
   }
 }

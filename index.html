@@ -8,7 +8,7 @@
 
         <!-- =====BOX ICONS===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="shortcut icon" href="assets/img/thebaby01.png" type="image/x-icon">
+        <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
 
         <title>Portfolio website complete</title>
     </head>
@@ -154,40 +154,56 @@
                 <h2 class="section-title">Trabalho</h2>
 
                 <div class="work__container bd-grid">
-                    <a href="" class="work__img">
-                        <img src="assets/img/work1.jpg" alt="">
+                    <a href="https://portf-profissional-ana.vercel.app" class="work__img">
+                        <img src="assets/img/Projeto01.png" alt="">
                     </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work2.jpg" alt="">
+                    <a href="https://smcontabil.netlify.app/" class="work__img">
+                        <img src="assets/img/Projeto02.png" alt="">
                     </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work3.jpg" alt="">
+                    <a href="https://flexweb-go.vercel.app/" class="work__img">
+                        <img src="assets/img/Projeto03.png" alt="">
                     </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work4.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work5.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work6.jpg" alt="">
-                    </a>
+                 
                 </div>
             </section>
 
             <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contato</h2>
-
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Enviar" class="contact__button button">
-                    </form>
-                </div>
-            </section>
+           <section class="section">
+            <h2 class="contact-titlee">Contato</h2>
+        <div class="container_contact bd-grid" id="contact">
+            <div class="form-container" id="form-container">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-input"
+                            placeholder="Seu nome completo"
+                            required
+                        />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            class="form-input form-textarea"
+                            placeholder="Digite sua mensagem aqui..."
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button" id="submit-btn">
+                        <i class="fas fa-paper-plane button-icon" id="button-icon"></i>
+                        <span class="button-text">Enviar via WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
         </main>
 
         <!--===== FOOTER =====-->
@@ -196,7 +212,7 @@
             <div class="footer__social">
                 <a href="https://www.facebook.com/share/17EuTGNwze/" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
                 <a href="https://www.instagram.com/andre_rls_ofc?igsh=MWt3dHYzZzA3OWc5cw==" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+                
             </div>
             <p class="footer__copy">&#169; André Lucas | Desenvolvedor Front-End </p>
         </footer>
