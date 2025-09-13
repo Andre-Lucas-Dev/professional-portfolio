@@ -1,185 +1,57 @@
-/* Menu (show/hidden) */
-const navMenu = document.getElementById("nav-menu"),
-  navToggle = document.getElementById("nav-toggle"),
-  navClose = document.getElementById("nav-close")
+/*===== MENU SHOW =====*/ 
+const showMenu = (toggleId, navId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId)
 
-/* Menu (show) */
-if (navToggle) {
-  navToggle.addEventListener("click", () => {
-    navMenu.classList.add("show-menu")
-  })
-}
-
-/* Menu (hidden) */
-if (navClose) {
-  navClose.addEventListener("click", () => {
-    navMenu.classList.remove("show-menu")
-  })
-}
-
-/* Mobile menu */
-const navLink = document.querySelectorAll(".nav-link")
-
-function linkAction() {
-  const navMenu = document.getElementById("nav-menu")
-  navMenu.classList.remove("show-menu")
-}
-navLink.forEach((n) => n.addEventListener("click", linkAction))
-
-/* Skills (accordion) */
-const skillsContent = document.getElementsByClassName("skills-container-content"),
-  skillsHeader = document.querySelectorAll(".skills-container-header")
-
-function toggleSkills() {
-  let itemClass = this.parentNode.className
-
-  for (i = 0; i < skillsContent.length; i++) {
-    skillsContent[i].className = "skills-container-content skills-close";
-  }
-  if (itemClass === "skills-container-content skills-close") {
-    this.parentNode.className = "skills-container-content skills-open"
-  }
-}
-
-skillsHeader.forEach((el) => {
-  el.addEventListener("click", toggleSkills)
-})
-
-/* Experience tabs */
-const tabs = document.querySelectorAll("[data-target]"),
-  tabContents = document.querySelectorAll("[data-content]")
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const target = document.querySelector(tab.dataset.target)
-
-    tabContents.forEach((tabContent) => {
-      tabContent.classList.remove("experience-active")
-    })
-    target.classList.add("experience-active")
-
-    tabs.forEach((tab) => {
-      tab.classList.remove("experience-active")
-    })
-    tab.classList.add("experience-active")
-  })
-})
-
-/* Articles swiper */
-const swiperArticles = new Swiper(".articles-container", {
-  cssMode: true,
-  loop: true,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-})
-
-/* Scroll sections (active link) */
-const sections = document.querySelectorAll("section[id]")
-
-function scrollActive() {
-  const scrollY = window.pageYOffset
-
-  sections.forEach((current) => {
-    const sectionHeight = current.offsetHeight
-    const sectionTop = current.offsetTop - 50
-    const sectionId = current.getAttribute("id")
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav-menu a[href*=" + sectionId + "]")
-        .classList.add("active-link")
-    } else {
-      document
-        .querySelector(".nav-menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link")
+    if(toggle && nav){
+        toggle.addEventListener('click', ()=>{
+            nav.classList.toggle('show')
+        })
     }
-  })
 }
-window.addEventListener("scroll", scrollActive)
+showMenu('nav-toggle','nav-menu')
 
-/* Background header */
-function scrollHeader() {
-  const nav = document.getElementById("header")
+/*==================== REMOVE MENU MOBILE ====================*/
+const navLink = document.querySelectorAll('.nav__link')
 
-  if (this.scrollY >= 80) nav.classList.add("scroll-header")
-  else nav.classList.remove("scroll-header")
+function linkAction(){
+    const navMenu = document.getElementById('nav-menu')
+    // When we click on each nav__link, we remove the show-menu class
+    navMenu.classList.remove('show')
 }
-window.addEventListener("scroll", scrollHeader)
+navLink.forEach(n => n.addEventListener('click', linkAction))
 
-/* Show scroll to top */
-function scrollUp() {
-  const scrollUp = document.getElementById("scroll-up")
+/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
+const sections = document.querySelectorAll('section[id]')
 
-  if (this.scrollY >= 560) scrollUp.classList.add("show-scroll")
-  else scrollUp.classList.remove("show-scroll")
+const scrollActive = () =>{
+    const scrollDown = window.scrollY
+
+  sections.forEach(current =>{
+        const sectionHeight = current.offsetHeight,
+              sectionTop = current.offsetTop - 58,
+              sectionId = current.getAttribute('id'),
+              sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+        
+        if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
+            sectionsClass.classList.add('active-link')
+        }else{
+            sectionsClass.classList.remove('active-link')
+        }                                                    
+    })
 }
-window.addEventListener("scroll", scrollUp)
+window.addEventListener('scroll', scrollActive)
 
-/* Dark/Light mode */
-const themeButton = document.getElementById("theme-button")
-const darkTheme = "dark-theme"
-const iconTheme = "fa-sun"
+/*===== SCROLL REVEAL ANIMATION =====*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2000,
+    delay: 200,
+//     reset: true
+});
 
-const selectedTheme = localStorage.getItem("selected-theme")
-const selectedIcon = localStorage.getItem("selected-icon")
-
-const getCurrentTheme = () =>
-  document.body.classList.contains(darkTheme) ? "dark" : "light"
-const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? "fa-moon" : "fa-sun"
-
-if (selectedTheme) {
-  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](darkTheme)
-  themeButton.classList[selectedIcon === "fa-moon" ? "add" : "remove"](iconTheme)
-}
-
-themeButton.addEventListener("click", () => {
-  document.body.classList.toggle(darkTheme)
-  themeButton.classList.toggle(iconTheme)
-
-  localStorage.setItem("selected-theme", getCurrentTheme())
-  localStorage.setItem("selected-icon", getCurrentIcon())
-})
-
-/* WhatsApp integration - Enviar mensagem via WhatsApp */
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-  event.preventDefault()
-
-  // Obter dados do formulário
-  const name = document.getElementById('name').value
-  const email = document.getElementById('email').value
-  const subject = document.getElementById('subject').value
-  const message = document.getElementById('message').value
-
-  // Número do WhatsApp (André Lucas)
-  const phoneNumber = '5563992174742'
-  
-  // Montar mensagem para WhatsApp
-  const text = `Olá, meu nome é ${name}.
-
-📧 Email: ${email}
-📋 Assunto: ${subject}
-
-💬 Mensagem: ${message}`
-
-  // Codificar texto para URL
-  const encodedText = encodeURIComponent(text)
-  
-  // Criar URL do WhatsApp
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`
-  
-  // Abrir WhatsApp em nova aba
-  window.open(whatsappUrl, '_blank')
-  
-  // Limpar o formulário
-  document.getElementById('contact-form').reset()
-  
-  // Mostrar mensagem de confirmação
-  alert('Redirecionando para o WhatsApp! A conversa será aberta em uma nova aba.')
-})
+sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
+sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
+sr.reveal('.home__social-icon',{ interval: 200}); 
+sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
